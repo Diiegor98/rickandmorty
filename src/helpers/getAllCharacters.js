@@ -1,9 +1,12 @@
 //FUNCIÓN QUE HACE EL FETCH A TODOS LOS PERSONAJES
 
-let URL_BASE = "https://rickandmortyapi.com/api/character";
-
-export const getAllCharacters = async (setCharacters) => {
-  const res = await fetch(URL_BASE);
+export const getAllCharacters = async ({
+  setCharacters,
+  setPagination,
+  url,
+}) => {
+  const res = await fetch(url);
   const data = await res.json();
   setCharacters(data.results);
+  setPagination(data.info);
 };
