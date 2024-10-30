@@ -8,8 +8,7 @@ function Home() {
   const { characters } = useContext(CharactersContext);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  useEffect(() => {
-  }, [searchParams]);
+  useEffect(() => {}, [searchParams]);
 
   const handleChange = (e) => {
     const filter = e.target.value;
@@ -18,20 +17,25 @@ function Home() {
 
   return (
     <main>
+      <Pagination />
+      <hr />
       <input
         onChange={handleChange}
         type="text"
+        placeholder="Buscar personaje"
+        className="input input-bordered input-accent w-full max-w-xs mt-10"
         value={searchParams.get("filter") ? searchParams.get("filter") : ""}
       />
-      <Pagination />
       {characters?.length === 0 ? (
-        <p>Cargando</p>
+        <span className="loading loading-spinner text-accent"></span>
       ) : (
         <CharactersCardContainer
           characters={characters}
           searchParams={searchParams}
         />
       )}
+      <hr />
+      <Pagination />
     </main>
   );
 }

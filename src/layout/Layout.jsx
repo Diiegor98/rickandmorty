@@ -1,13 +1,13 @@
 import { Outlet, useNavigation } from "react-router-dom";
-import { Navbar } from "../components/navbar/Navbar";
+import Header from "../components/header/Header";
 
 export const Layout = () => {
   const { state } = useNavigation();
 
   return (
-    <div>
-      <Navbar />
-      {state === "loading" ? <p>Cargando</p> : <Outlet />}
+    <div className="flex flex-col items-center">
+      <Header />
+      {state === "loading" ? <span className="loading loading-spinner text-accent"></span> : <Outlet />}
     </div>
   );
 };

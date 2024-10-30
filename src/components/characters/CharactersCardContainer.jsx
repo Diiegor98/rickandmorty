@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { CardCharacters } from "./CardCharacters";
 
 export const CharactersCardContainer = ({ characters, searchParams }) => {
@@ -13,14 +12,12 @@ export const CharactersCardContainer = ({ characters, searchParams }) => {
   });
 
   return (
-    <div>
+    <div className="container w-screen flex flex-wrap gap-6 justify-center my-10 ">
       {filteredCharacters.length === 0 ? ( // Verifica si hay personajes filtrados
         <p>Personaje no encontrado</p>
       ) : (
         filteredCharacters.map((char) => (
-          <Link to={`/character/${char.id}`} key={char.id}>
-            <CardCharacters data={char} />
-          </Link>
+          <CardCharacters data={char} key={char.id} />
         ))
       )}
     </div>
